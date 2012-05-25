@@ -1,8 +1,8 @@
 # encoding: UTF-8
 
-def printBitmap(bitmap)
-  (1..stack.max + 1).step(2).each do |y|
-    (0..stack.max).each do |x|
+def printBitmap(bitmap, size)
+  (1..size + 1).step(2).each do |y|
+    (0..size).each do |x|
       upperModule = !bitmap[[x,y-1]]
       lowerModule = !bitmap[[x,y]]
       if upperModule 
@@ -112,4 +112,4 @@ qr = Hash.new
   end
 end
 
-printBitmap qr
+printBitmap qr, stack.max
