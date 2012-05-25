@@ -1,34 +1,6 @@
-require 'printer'
+require 'qr/code'
 
-class QR
-  class Layer
-    def initialize(n, o)
-      @next = n
-    end 
-    def max
-      @next.max
-    end
-    def module?(x, y)
-      @next.module? x, y
-    end
-  end
-
-  class Empty < Layer
-    def module?(x, y)
-      false
-    end
-    def max
-      20
-    end
-  end
-
-  class Mask < Layer
-    def module?(x, y)
-      return !@next.module?(x, y) if y % 2 == 0
-      super x, y
-    end
-  end
-
+module QR
   class Mode < Layer
     def module?(x, y)
       return true if x == max - 1 && y == max
@@ -83,40 +55,8 @@ class QR
     end
   end
 
-  def initialize
-    stack do
-      layer :Empty
-      layer :Mode
-      layer :Mask
-      layer :Timing
-      layer :Position
-      layer :QuietZone, 4
-      layer :Invert
-    end
-  end
-
-  def stack(&modules)
-    instance_eval &modules
-  end
-
-  def layer(name, options = nil)
-    @stack = QR.const_get(name).new @stack, options
-  end
-
-  def bits
-    n = @stack.max + 1
-    arr = []
-    (0...n**2).each do |i|
-        arr[i] = @stack.module?(i % n, i / n)
-    end
-    arr 
-  end
-
-  def max
-    @stack.max
-  end
 end
 
-qr = QR.new
+qr = QR::Code.new
 
 Printer.printBits qr.bits, qr.max + 1
