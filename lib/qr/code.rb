@@ -30,10 +30,17 @@ module QR
     def bits
       n = @stack.max + 1
       arr = []
-      (0...n**2).each do |i|
-          arr[i] = @stack.module?(i % n, i / n)
+      i = n * (n - 1) + 1#*n 
+      while i > 0
+        arr[i - 1] = bit? n, i - 1
+        arr[i] = bit? n, i
+        i = i - 2
       end
       arr 
+    end
+
+    def bit? n, i
+      @stack.module?(i % n, i / n)
     end
 
     def max
