@@ -87,14 +87,27 @@ class QuietZone
   end
 end
 
-stack = QuietZone.new(2, Position.new(Timing.new(Mask.new(Mode.new(Empty.new)))))
+class QR
+  def initialize
+    @stack = QuietZone.new(2, Position.new(Timing.new(Mask.new(Mode.new(Empty.new)))))
+  end
 
-qr = Hash.new
+  def bits
+    @bits = Hash.new
 
-(0..stack.max + 1).each do |y|
-  (0..stack.max).each do |x|
-    qr[[x,y]] = stack.module?(x, y)
+    (0..@stack.max + 1).each do |y|
+      (0..@stack.max).each do |x|
+        @bits[[x,y]] = @stack.module?(x, y)
+      end
+    end
+    @bits
+  end
+
+  def max
+    @stack.max
   end
 end
 
-Printer.printBits qr, stack.max
+qr = QR.new
+
+Printer.printBits qr.bits, qr.max
