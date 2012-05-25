@@ -1,9 +1,18 @@
 require 'printer'
 
-class Empty
+class Layer
   def initialize(n, o)
-  
+    @next = n
   end 
+  def max
+    @next.max
+  end
+  def module?(x, y)
+    @next.module? x, y
+  end
+end
+
+class Empty < Layer
   def module?(x, y)
     false
   end
@@ -12,39 +21,21 @@ class Empty
   end
 end
 
-class Mask
-  def initialize (n, o)
-    @next = n
-  end
-  def max
-    @next.max
-  end
+class Mask < Layer
   def module?(x, y)
     return !@next.module?(x, y) if y % 2 == 0
-    @next.module?(x, y)
+    super x, y
   end
 end
 
-class Mode
-  def initialize (n, o)
-    @next = n
-  end
-  def max
-    @next.max
-  end
+class Mode < Layer
   def module?(x, y)
     return true if x == max - 1 && y == max
-    @next.module?(x, y)
+    super x, y
   end
 end
 
-class Timing
-  def initialize (n, o)
-    @next = n
-  end
-  def max
-    @next.max
-  end
+class Timing < Layer
   def module?(x, y)
     return y % 2 == 0 if x == 6
     return x % 2 == 0 if y == 6
@@ -52,13 +43,7 @@ class Timing
   end
 end
 
-class Position
-  def initialize (n, o)
-    @next = n
-  end
-  def max
-    @next.max
-  end
+class Position < Layer
   def firstSquare?(x, y)
     @x, @y = x, y
     x < 8 && y < 8
@@ -75,13 +60,13 @@ class Position
   end
 end
 
-class QuietZone
+class QuietZone < Layer
   def initialize (n, g)
-    @next = n
     @gap = g
+    super(n, g)
   end
   def max
-    @next.max + @gap * 2
+    super + @gap * 2
   end
   def module?(x, y)
     return false if x < @gap || y < @gap
@@ -91,15 +76,9 @@ class QuietZone
   end
 end
 
-class Invert
-  def initialize(n, o)
-    @next = n
-  end
+class Invert < Layer
   def module?(x, y)
-    !@next.module?(x, y)
-  end
-  def max
-    @next.max
+    !super x, y
   end
 end
 
