@@ -8,14 +8,14 @@ module QR
   class Code
     def initialize
       stack do
-        layer :Empty
-        layer :Size, 21
-        layer :Mode
-        layer :Mask
-        layer :Timing
-        layer :Position
-        layer :QuietZone, 4
-        layer :Invert
+        add :Empty
+        add :Size, 21
+        add :Mode
+        add :Mask
+        add :Timing
+        add :Position
+        add :QuietZone, 4
+        add :Invert
       end
     end
 
@@ -23,7 +23,7 @@ module QR
       instance_eval &modules
     end
 
-    def layer(name, options = nil)
+    def add(name, options = nil)
       @stack = QR.const_get(name).new @stack, options
     end
 
