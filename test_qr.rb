@@ -1,6 +1,9 @@
 require 'printer'
 
 class Empty
+  def initialize(n, o)
+  
+  end 
   def module?(x, y)
     false
   end
@@ -10,7 +13,7 @@ class Empty
 end
 
 class Mask
-  def initialize (n)
+  def initialize (n, o)
     @next = n
   end
   def max
@@ -23,7 +26,7 @@ class Mask
 end
 
 class Mode
-  def initialize (n)
+  def initialize (n, o)
     @next = n
   end
   def max
@@ -36,7 +39,7 @@ class Mode
 end
 
 class Timing
-  def initialize (n)
+  def initialize (n, o)
     @next = n
   end
   def max
@@ -50,7 +53,7 @@ class Timing
 end
 
 class Position
-  def initialize (n)
+  def initialize (n, o)
     @next = n
   end
   def max
@@ -73,7 +76,7 @@ class Position
 end
 
 class QuietZone
-  def initialize (g, n)
+  def initialize (n, g)
     @next = n
     @gap = g
   end
@@ -89,7 +92,7 @@ class QuietZone
 end
 
 class Invert
-  def initialize(n)
+  def initialize(n, o)
     @next = n
   end
   def module?(x, y)
@@ -99,9 +102,26 @@ class Invert
     @next.max
   end
 end
+
 class QR
   def initialize
-    @stack = Invert.new(QuietZone.new(4, Position.new(Timing.new(Mask.new(Mode.new(Empty.new))))))
+    stack do
+      layer :Empty
+      layer :Mode
+      layer :Mask
+      layer :Timing
+      layer :Position
+      layer :QuietZone, 4
+      layer :Invert
+    end
+  end
+
+  def stack(&modules)
+    instance_eval &modules
+  end
+
+  def layer(name, options = nil)
+    @stack = Kernel.const_get(name).new @stack, options
   end
 
   def bits
@@ -121,4 +141,3 @@ end
 qr = QR.new
 
 Printer.printBits qr.bits, qr.max + 1
-puts qr.bits.map{|b| b ? '1': '0'}.join.inspect
