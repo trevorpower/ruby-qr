@@ -93,14 +93,12 @@ class QR
   end
 
   def bits
-    @bits = Hash.new
-
-    (0..@stack.max + 1).each do |y|
-      (0..@stack.max).each do |x|
-        @bits[[x,y]] = @stack.module?(x, y)
-      end
+    n = @stack.max
+    arr = []
+    (0..n**2).each do |i|
+        arr[i] = @stack.module?(i % n, i / n)
     end
-    @bits
+    arr 
   end
 
   def max
