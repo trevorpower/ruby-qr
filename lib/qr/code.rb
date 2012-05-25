@@ -32,10 +32,13 @@ module QR
       n = @stack.max + 1
       arr = []
       i = n * (n - 1) + 1
-      while i > 0
-        arr[i] = bit? n, i
-        arr[i - 1] = bit? n, i - 1
-        i = i - 2
+      c = n
+      while c > 0 
+        n.downto(0).each do |r|
+          arr[r * n + c] = bit? n, r * n + c
+          arr[r * n + c - 1] = bit? n, r * n + c - 1
+        end
+        c -= 2
       end
       arr 
     end
