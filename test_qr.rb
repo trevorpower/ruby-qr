@@ -83,19 +83,31 @@ class QuietZone
   def module?(x, y)
     return false if x < @gap || y < @gap
     return false if x > max - @gap || y > max - @gap
-    x != 0 && y != 0 && x != max && y != max && @next.module?(x - @gap, y - @gap)
+    #x != 0 && y != 0 && x != max && y != max && 
+    @next.module?(x - @gap, y - @gap)
   end
 end
 
+class Invert
+  def initialize(n)
+    @next = n
+  end
+  def module?(x, y)
+    !@next.module?(x, y)
+  end
+  def max
+    @next.max
+  end
+end
 class QR
   def initialize
-    @stack = QuietZone.new(2, Position.new(Timing.new(Mask.new(Mode.new(Empty.new)))))
+    @stack = Invert.new(QuietZone.new(4, Position.new(Timing.new(Mask.new(Mode.new(Empty.new))))))
   end
 
   def bits
-    n = @stack.max
+    n = @stack.max + 1
     arr = []
-    (0..n**2).each do |i|
+    (0...n**2).each do |i|
         arr[i] = @stack.module?(i % n, i / n)
     end
     arr 
@@ -108,4 +120,5 @@ end
 
 qr = QR.new
 
-Printer.printBits qr.bits, qr.max
+Printer.printBits qr.bits, qr.max + 1
+puts qr.bits.map{|b| b ? '1': '0'}.join.inspect
