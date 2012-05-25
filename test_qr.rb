@@ -1,13 +1,6 @@
 require 'qr/code'
 
 module QR
-  class Mode < Layer
-    def module?(x, y)
-      return true if x == max - 1 && y == max
-      super x, y
-    end
-  end
-
   class Timing < Layer
     def module?(x, y)
       return y % 2 == 0 if x == 6

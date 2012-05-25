@@ -3,6 +3,7 @@ require 'qr/layer'
 require 'qr/empty'
 require 'qr/mask'
 require 'qr/size'
+require 'qr/mode'
 
 module QR
   class Code
@@ -10,7 +11,7 @@ module QR
       stack do
         add :Empty
         add :Size, 21
-        add :Mode
+        add :Mode, :byte
         add :Mask
         add :Timing
         add :Position
@@ -30,10 +31,10 @@ module QR
     def bits
       n = @stack.max + 1
       arr = []
-      i = n * (n - 1) + 1#*n 
+      i = n * (n - 1) + 1
       while i > 0
-        arr[i - 1] = bit? n, i - 1
         arr[i] = bit? n, i
+        arr[i - 1] = bit? n, i - 1
         i = i - 2
       end
       arr 
