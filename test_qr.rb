@@ -1,19 +1,4 @@
-# encoding: UTF-8
-
-def printBitmap(bitmap, size)
-  (1..size + 1).step(2).each do |y|
-    (0..size).each do |x|
-      upperModule = !bitmap[[x,y-1]]
-      lowerModule = !bitmap[[x,y]]
-      if upperModule 
-        print lowerModule ? "█" : "▀"
-      else
-        print lowerModule ? "▄" : " "
-      end
-    end
-    print "\n"
-  end
-end
+require 'printer'
 
 class Empty
   def module?(x, y)
@@ -112,4 +97,4 @@ qr = Hash.new
   end
 end
 
-printBitmap qr, stack.max
+Printer.printBits qr, stack.max
