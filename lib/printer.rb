@@ -1,13 +1,12 @@
 class Printer
-  def self.printBits(bitmap, size)
-    i = size
+  def self.printBits(bitmap, width)
+    i = width
     while i < bitmap.size do
-      printPair(bitmap[i - size], bitmap[i])
+      printPair(bitmap[i - width], bitmap[i])
       i += 1
-      if (i % size == 0)
-        i += size
+      if (i % width == 0)
+        i += width
         print "\n"
-      else
       end
     end
   end
