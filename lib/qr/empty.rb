@@ -4,7 +4,7 @@ module QR
       false
     end
     def format? i
-      true
+      false
     end
     def max
       0
