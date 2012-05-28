@@ -4,6 +4,8 @@ require 'qr/empty'
 require 'qr/mask'
 require 'qr/size'
 require 'qr/mode'
+require 'qr/vertical_format'
+require 'qr/error_correction'
 
 module QR
   class Code
@@ -13,6 +15,8 @@ module QR
         add :Size, 21
         add :Mode, :byte
         add :Mask
+        add :ErrorCorrection, :L 
+        add :VerticalFormat 
         add :Timing
         add :Position
         add :QuietZone, 4
