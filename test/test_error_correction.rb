@@ -1,25 +1,7 @@
-require 'minitest/autorun'
+require 'test_helper'
 require 'qr/error_correction'
 
-  class QR::Layer
-    def format_from_s
-      (0..14).map{|i| format?(i)? ?# : ?.}.reverse.join
-    end
-    def format_to_s
-      (0..14).map{|i| format?(i)? ?# : ?.}.reverse.join
-    end
-  end
-
 class TestErrorCorrection < MiniTest::Unit::TestCase
-  class DefaultLayer < QR::Layer
-    attr_accessor :format
-    def initialize
-      super nil, nil
-    end
-    def format? i
-      format
-    end
-  end
 
   def setup
     @default = DefaultLayer.new
