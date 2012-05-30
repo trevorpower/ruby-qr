@@ -7,10 +7,10 @@ module QR
     def module?(x, y)
       return super(x, y) if x != 8
       return true if max - y == 7
-      if max - y < 7
-        format?(max - y)
-      elsif y < 8
-        format?(15 - y)
+      if y < 8
+        format? y
+      elsif max - y < 7
+        format? 14 - (max - y)
       else
         super x, y 
       end
