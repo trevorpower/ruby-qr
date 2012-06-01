@@ -8,9 +8,9 @@ module QR
       return super(x, y) if x != 8
       return true if max - y == 7
       if y < 8
-        format? y
+        format[y] == '1'
       elsif max - y < 7
-        format? 14 - (max - y)
+        format[14 - (max - y)] == '1'
       else
         super x, y 
       end

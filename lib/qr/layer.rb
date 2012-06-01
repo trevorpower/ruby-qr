@@ -9,8 +9,8 @@ module QR
       @next.max
     end
 
-    def format?(i)
-      @next.format? i
+    def format
+      @next.format
     end
 
     def module?(x, y)

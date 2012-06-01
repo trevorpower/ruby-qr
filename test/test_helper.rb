@@ -1,22 +1,16 @@
 require 'minitest/autorun'
 require 'qr/layer'
 
-class QR::Layer
-  def format_from_s
-    (0..14).map{|i| format?(i)? ?# : ?.}.reverse.join
-  end
-  def format_to_s
-    (0..14).map{|i| format?(i)? ?# : ?.}.reverse.join
-  end
-end
-
 class DefaultLayer < QR::Layer
-  attr_accessor :format
+
+  attr_accessor :format, :max
+
   def initialize
     super nil, nil
   end
-  def format? i
-    format
+
+  def module? x, y
+    false
   end
 end
 
