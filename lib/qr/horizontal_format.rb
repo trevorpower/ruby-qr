@@ -1,9 +1,5 @@
 module QR
   class HorizontalFormat < Layer
-    def initialize(n, o)
-      super n, o
-    end
-    
     def module?(x, y)
       return super(x, y) if y != 8
       if x < 7
@@ -11,7 +7,7 @@ module QR
       elsif x == 7
         format[6] == '1'
       elsif max - x < 6
-        format[x - max + 16] == '1'
+        format[x - max + 14] == '1'
       else
         super x, y 
       end

@@ -17,7 +17,7 @@ module QR
         add :Remainder
         add :Size, 21
         add :Mode, :byte
-        add :ErrorCorrection, :L 
+        add :ErrorCorrection, :M 
         add :Mask
         add :FormatErrorCorrection
         add :FormatMask
@@ -39,6 +39,7 @@ module QR
     end
 
     def bits
+      puts @stack.format
       n = @stack.max + 1
       arr = []
       i = n * (n - 1) + 1

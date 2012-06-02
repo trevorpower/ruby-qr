@@ -28,14 +28,14 @@ class TestHorizontalFormat < MiniTest::Unit::TestCase
     assert_equal false, @layer.module?(7, 8)
   end
 
-  def test_that_first_five_bits_on_row_eight_correspond_to_first_five_bits_of_format
-                      #01234567890123456
-    @default.format = "00000000000101101"
+  def test_that_last_six_bits_on_row_eight_correspond_to_first_six_bits_of_format
+                      #012345678901234
+    @default.format = "000000000001001"
     @default.max = 39
-    assert_equal true, @layer.module?(34, 8)
+    assert_equal false, @layer.module?(34, 8)
     assert_equal false, @layer.module?(35, 8)
     assert_equal true, @layer.module?(36, 8)
-    assert_equal true, @layer.module?(37, 8)
+    assert_equal false, @layer.module?(37, 8)
     assert_equal false, @layer.module?(38, 8)
     assert_equal true, @layer.module?(39, 8)
   end
