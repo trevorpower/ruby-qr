@@ -9,6 +9,7 @@ require 'qr/format_mask'
 require 'qr/vertical_format'
 require 'qr/horizontal_format'
 require 'qr/error_correction'
+require 'qr/data'
 
 module QR
   class Code
@@ -17,6 +18,7 @@ module QR
         add :Remainder
         add :Size, 21
         add :Mode, :byte
+        add :Data
         add :ErrorCorrection, :M 
         add :Mask
         add :FormatErrorCorrection

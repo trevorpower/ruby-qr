@@ -13,6 +13,10 @@ module QR
       @next.format
     end
 
+    def data
+      @next.data
+    end
+
     def module?(x, y)
       @next.module? x, y
     end

@@ -19,6 +19,9 @@ module QR
       @index = -1
       super n, o
     end
+    def data
+      @mode 
+    end
     def module?(x, y)
       return super(x, y) unless @index < 3
       @index += 1 

@@ -9,6 +9,10 @@ class DefaultLayer < QR::Layer
     super nil, nil
   end
 
+  def data
+    ''
+  end
+
   def module? x, y
     @module
   end
