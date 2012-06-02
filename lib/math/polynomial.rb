@@ -1,6 +1,12 @@
 module Math
   class Polynomial
     def self.div poly, denom
+      poly = normalize poly
+      denom = normalize denom
+
+      puts poly.inspect
+      puts denom.inspect
+
       quot = []
 
       while poly.size >= denom.size
@@ -9,10 +15,15 @@ module Math
         poly = poly
           .zip(denom)
           .map{|a,b| b.nil? ? a : a - b*result}
-          .drop_while{|i| i == 0}
+          .drop(1)
       end
 
-      [quot.map{|i| i || 0}.reverse, poly]
+      [quot.reverse.map{|i| i || 0}, normalize(poly)]
+    end
+
+    def self.normalize(poly)
+      poly.drop_while{|i| i == 0}
     end
   end
+
 end

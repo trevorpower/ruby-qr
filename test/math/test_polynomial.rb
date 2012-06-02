@@ -19,6 +19,10 @@ class TestPolynomialDivision < MiniTest::Unit::TestCase
     [1, 0, 0]
   end
 
+  def x_cubed
+    [1, 0, 0, 0]
+  end
+
   def x_plus_one
     [1, 1]
   end
@@ -27,8 +31,8 @@ class TestPolynomialDivision < MiniTest::Unit::TestCase
     [1, -1]
   end
 
-  def test_that_x_squared_divided_by_x_is_one
-    assert_equal [one, []], Math::Polynomial.div(x_squared, x)
+  def test_that_x_squared_divided_by_x_is_x
+    assert_equal [x, []], Math::Polynomial.div(x_squared, x)
   end
 
   def test_that_x_divided_by_x_is_one
@@ -41,10 +45,6 @@ class TestPolynomialDivision < MiniTest::Unit::TestCase
 
   def test_that_x_squared_divided_by_one_is_x_squared
     assert_equal [x_squared, []], Math::Polynomial.div(x_squared, one)
-  end
-
-  def test_that_x_squared_divided_by_x_is_one
-    assert_equal [x, []], Math::Polynomial.div(x_squared, x)
   end
 
   def test_that_x_squared_divided_by_x_is_x
@@ -63,4 +63,11 @@ class TestPolynomialDivision < MiniTest::Unit::TestCase
     assert_equal [x_minus_one, one], Math::Polynomial.div(x_squared, x_plus_one)
   end
 
+  def test_that_x_cubed_divided_by_x_is_x_squared
+    assert_equal [x_squared, []], Math::Polynomial.div(x_cubed, x)
+  end
+
+  def test_that_x_cubed_divided_by_x_plus_one_is_x_squared_minus_x_plus_one
+    assert_equal [[1, -1, 1], [-1]], Math::Polynomial.div(x_cubed, x_plus_one)
+  end
 end
