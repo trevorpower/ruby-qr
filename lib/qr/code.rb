@@ -1,6 +1,6 @@
 require 'printer'
 require 'qr/layer'
-require 'qr/empty'
+require 'qr/remainder'
 require 'qr/mask'
 require 'qr/size'
 require 'qr/mode'
@@ -16,8 +16,8 @@ module QR
         add :Remainder
         add :Size, 21
         add :Mode, :byte
-        add :Mask
         add :ErrorCorrection, :L 
+        add :Mask
         add :FormatErrorCorrection
         add :VerticalFormat 
         add :HorizontalFormat 

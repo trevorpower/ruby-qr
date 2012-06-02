@@ -3,14 +3,14 @@ require 'qr/layer'
 
 class DefaultLayer < QR::Layer
 
-  attr_accessor :format, :max
+  attr_accessor :format, :max, :module
 
   def initialize
     super nil, nil
   end
 
   def module? x, y
-    false
+    @module
   end
 end
 
