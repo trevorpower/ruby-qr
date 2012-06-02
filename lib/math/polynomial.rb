@@ -4,9 +4,6 @@ module Math
       poly = normalize poly
       denom = normalize denom
 
-      puts poly.inspect
-      puts denom.inspect
-
       quot = []
 
       while poly.size >= denom.size
