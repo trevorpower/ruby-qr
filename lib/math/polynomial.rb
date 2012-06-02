@@ -4,8 +4,6 @@ module Math
       poly = normalize poly
       denom = normalize denom
 
-      puts poly.join + '/' + denom.join
-
       quot = []
 
       while poly.size >= denom.size

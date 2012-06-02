@@ -5,6 +5,7 @@ require 'qr/mask'
 require 'qr/size'
 require 'qr/mode'
 require 'qr/format_error_correction'
+require 'qr/format_mask'
 require 'qr/vertical_format'
 require 'qr/horizontal_format'
 require 'qr/error_correction'
@@ -19,6 +20,7 @@ module QR
         add :ErrorCorrection, :L 
         add :Mask
         add :FormatErrorCorrection
+        add :FormatMask
         add :VerticalFormat 
         add :HorizontalFormat 
         add :Timing
