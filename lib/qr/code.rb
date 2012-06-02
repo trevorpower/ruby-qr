@@ -13,7 +13,7 @@ module QR
   class Code
     def initialize
       stack do
-        add :Empty
+        add :Remainder
         add :Size, 21
         add :Mode, :byte
         add :Mask
