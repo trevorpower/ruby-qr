@@ -16,17 +16,10 @@ module QR
   class Mode < Layer
     def initialize(n, o)
       @mode = QR::Modes.send o
-      @index = -1
       super n, o
     end
     def data
-      @mode 
-    end
-    def module?(x, y)
-      return super(x, y) unless @index < 3
-      @index += 1 
-      puts "#{x}, #{y}, #{@index}, #{@mode}"
-      @mode[@index] == '1'
+      @mode + super
     end
   end
 end

@@ -4,6 +4,7 @@ require 'qr/remainder'
 require 'qr/mask'
 require 'qr/size'
 require 'qr/timing'
+require 'qr/length'
 require 'qr/mode'
 require 'qr/format_error_correction'
 require 'qr/format_mask'
@@ -11,6 +12,7 @@ require 'qr/vertical_format'
 require 'qr/horizontal_format'
 require 'qr/error_correction'
 require 'qr/data'
+require 'qr/content'
 
 module QR
   class Code
@@ -18,6 +20,8 @@ module QR
       stack do
         add :Remainder
         add :Size, 21
+        add :Content, 'Hello World!'
+        add :Length
         add :Mode, :byte
         add :Data
         add :ErrorCorrection, :M 
@@ -57,7 +61,6 @@ module QR
           arr[row * n + col - 1] = @stack.module? col -1, row
         end
         col -= 2
-        col = 5 if col == 6
       end
       arr 
     end
