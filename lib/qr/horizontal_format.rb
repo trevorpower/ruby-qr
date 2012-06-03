@@ -6,7 +6,7 @@ module QR
         format[x] == '1'
       elsif x == 7
         format[6] == '1'
-      elsif max - x < 6
+      elsif max - x < 8
         format[x - max + 14] == '1'
       else
         super x, y 

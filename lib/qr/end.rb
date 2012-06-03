@@ -1,9 +1,10 @@
 require 'qr/layer'
 
 module QR
-  class End < Layer
+  class Padding < Layer
     def data
-      super + "0000"
+      puts super.ljust(8 * 19, '1110110000010001')
+      super.ljust(8 * 19, '1110110000010001')
     end
   end
 end
