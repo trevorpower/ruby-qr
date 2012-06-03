@@ -28,7 +28,7 @@ module QR
         add :HorizontalFormat 
         add :Timing
         add :Position
-        add :QuietZone, 4
+        add :QuietZone, 3
         add :Invert
       end
     end
@@ -42,23 +42,24 @@ module QR
     end
 
     def bits
-      puts @stack.format
       n = @stack.max + 1
       arr = []
-      i = n * (n - 1) + 1
-      c = n
-      while c > 0 
-        n.downto(0).each do |r|
-          arr[r * n + c] = bit? n, r * n + c
-          arr[r * n + c - 1] = bit? n, r * n + c - 1
+      col = n
+      while col > 0 
+        n.downto(0).each do |row|
+          arr[row * n + col] = @stack.module? col, row
+          arr[row * n + col - 1] = @stack.module? col -1, row
         end
-        c -= 2
+        break if col == 1
+        col -= 2
+        0.upto(n).each do |row|
+          arr[row * n + col] = @stack.module? col, row
+          arr[row * n + col - 1] = @stack.module? col -1, row
+        end
+        col -= 2
+        col = 5 if col == 6
       end
       arr 
-    end
-
-    def bit? n, i
-      @stack.module?(i % n, i / n)
     end
 
     def max
