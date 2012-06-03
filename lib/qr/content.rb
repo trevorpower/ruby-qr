@@ -5,7 +5,6 @@ module QR
     def initialize n, o
       super n, o
       @content = o
-      puts data
     end
 
     def data

@@ -13,6 +13,7 @@ require 'qr/horizontal_format'
 require 'qr/error_correction'
 require 'qr/data'
 require 'qr/content'
+require 'qr/end'
 
 module QR
   class Code
@@ -20,9 +21,10 @@ module QR
       stack do
         add :Remainder
         add :Size, 21
-        add :Content, 'Hello World!'
+        add :Content, ''
         add :Length
         add :Mode, :byte
+        add :End
         add :Data
         add :ErrorCorrection, :M 
         add :Mask
