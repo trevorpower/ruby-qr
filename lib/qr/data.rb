@@ -7,7 +7,6 @@ module QR
       @index = -1
     end
     def module?(x, y)
-      return super(x, y) unless @index < data.size
       @index += 1 
       data[@index] == '1'
     end

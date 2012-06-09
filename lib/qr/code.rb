@@ -17,6 +17,12 @@ require 'qr/end'
 require 'qr/padding'
 
 module QR
+  class Store < Layer
+    def data
+      @data = super if @data.nil?
+      @data
+    end
+  end
   class Code
     def initialize
       stack do
@@ -27,8 +33,9 @@ module QR
         add :Mode, :byte
         add :End
         add :Padding
-        add :Data
         add :ErrorCorrection, :L 
+        add :Store
+        add :Data
         add :Mask
         add :FormatErrorCorrection
         add :FormatMask
@@ -60,6 +67,12 @@ module QR
         end
         break if col == 1
         col -= 2
+        if col == 6
+          n.downto(0).each do |row|
+            arr[row * n + col] = @stack.module? col, row
+          end
+          col -= 1
+        end
         0.upto(n).each do |row|
           arr[row * n + col] = @stack.module? col, row
           arr[row * n + col - 1] = @stack.module? col -1, row
