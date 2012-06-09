@@ -1,9 +1,9 @@
 require 'test_helper'
 
 module Enumerable
-  def to_bits
-    map{|i| i.to_s 2}
-      .map{|i| i.rjust 8, ?0}
+  def to_bit_s
+    map{|b| b.to_s 2}
+      .map{|s| s.rjust 8, ?0}
       .join
   end 
 end
@@ -16,20 +16,12 @@ class String
 end
 
 def error_code data
+  gf = [1]
 
-  gf = (0..255).map do |i|
-    if i == 0
-      1
-    else 
-      result = 2 
-      (1...i).each do
-        result *= 2
-        if result > 255
-          result = result ^ 285
-        end
-      end
-      result
-    end
+  (1..255).map do |i|
+    v = gf[i - 1] * 2
+    v = v ^ 285 if v > 255
+    gf[i] = v
   end
 
   poly = data.to_poly.map{|i| gf.index i}
@@ -38,26 +30,15 @@ def error_code data
   gen = [0, 251, 67, 46, 61, 118, 70, 64, 94, 32, 45]
 
   while poly.size >= gen.size
-    result = poly.first - gen.first
+    diff = poly.first - gen.first
     poly = poly
-      .zip(gen.map{|i| (i + result) % 255})
-      .map { |a,b|
-        if a.nil?
-          if b.nil?
-            nil
-          else
-            gf[b]
-          end
-        elsif b.nil?
-          gf[a]
-        else
-          gf[a] ^ gf[b]
-        end
-      }
+      .zip(gen.map{|i| (i + diff) % 255})
+      .map{|a,b| (a.nil? ? 0 : gf[a]) ^ (b.nil? ? 0 : gf[b])}
       .map{|i| gf.index i}
       .drop(1)
   end
-  poly.map{|i| gf[i]}.to_bits
+
+  poly.map{|i| gf[i]}.to_bit_s
 end
 
 class TestErrorCorrection < MiniTest::Unit::TestCase
