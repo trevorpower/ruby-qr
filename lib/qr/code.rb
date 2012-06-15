@@ -11,11 +11,11 @@ module QR
   end
 
   class Code
-    def initialize
+    def initialize(content)
       stack do
         add :Remainder
         add :Size, 21
-        add :Content, 'hello world'
+        add :Content, content
         add :Length
         add :Mode, :byte
         add :End
