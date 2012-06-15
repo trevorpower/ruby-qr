@@ -60,7 +60,7 @@ module QR
         end
         col -= 2
       end
-      arr 
+      [arr, n]
     end
 
     def max
