@@ -44,4 +44,4 @@ end
 
 qr = QR::Code.new
 
-Printer.printBits qr.bits, qr.max + 1
+Printer.printBits qr.bits, qr.size

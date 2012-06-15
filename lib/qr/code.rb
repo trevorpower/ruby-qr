@@ -1,28 +1,15 @@
 require 'printer'
-require 'qr/layer'
-require 'qr/remainder'
-require 'qr/mask'
-require 'qr/size'
-require 'qr/timing'
-require 'qr/length'
-require 'qr/mode'
-require 'qr/format_error_correction'
-require 'qr/format_mask'
-require 'qr/vertical_format'
-require 'qr/horizontal_format'
-require 'qr/error_correction'
-require 'qr/data'
-require 'qr/content'
-require 'qr/end'
-require 'qr/padding'
+Dir[File.dirname(__FILE__) + '/*.rb'].each{|f| require f}
 
 module QR
+
   class Store < Layer
     def data
       @data = super if @data.nil?
       @data
     end
   end
+
   class Code
     def initialize
       stack do
@@ -85,5 +72,10 @@ module QR
     def max
       @stack.max
     end
+    
+    def size
+      max + 1
+    end
+
   end
 end
