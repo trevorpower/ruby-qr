@@ -5,6 +5,10 @@ module QR
       @next = n
     end 
 
+    def configure(config)
+
+    end
+
     def max
       @next.max
     end

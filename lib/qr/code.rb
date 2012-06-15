@@ -12,31 +12,25 @@ module QR
 
   class Code
     def initialize(content)
-      stack do
-        add :Remainder
-        add :Size, 21
-        add :Content, content
-        add :Length
-        add :Mode, :byte
-        add :End
-        add :Padding
-        add :ErrorCorrection, :L 
-        add :Store
-        add :Data
-        add :Mask
-        add :FormatErrorCorrection
-        add :FormatMask
-        add :VerticalFormat 
-        add :HorizontalFormat 
-        add :Timing
-        add :Position
-        add :QuietZone, 3
-        add :Invert
-      end
-    end
-
-    def stack(&modules)
-      instance_eval &modules
+      add :Remainder
+      add :Size, 21
+      add :Content, content
+      add :Length
+      add :Mode, :byte
+      add :End
+      add :Padding
+      add :ErrorCorrection, :L 
+      add :Store
+      add :Data
+      add :Mask
+      add :FormatErrorCorrection
+      add :FormatMask
+      add :VerticalFormat 
+      add :HorizontalFormat 
+      add :Timing
+      add :Position
+      add :QuietZone, 3
+      add :Invert
     end
 
     def add(name, options = nil)
