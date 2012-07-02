@@ -27,6 +27,7 @@ module QR
     end
 
     def add(name, *options)
+      puts name
       @stack = QR.const_get(name).new @stack, @config, *options
     end
 

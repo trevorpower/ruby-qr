@@ -1,5 +1,9 @@
 class QR::VerticalFormat < QR::Layer
 
+  def initialize lower_layer, config
+    super lower_layer
+  end
+
   def module?(x, y, config)
     format_module?(x, y, config[:format]) do
       super x, y, config

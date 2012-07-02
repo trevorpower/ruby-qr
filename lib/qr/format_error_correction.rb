@@ -6,7 +6,7 @@ module QR
 
     def initialize lower_layer, config
       config[:format] = config[:format] + bch(config[:format])
-      super lower_layer, config
+      super lower_layer
     end
 
     def bch(bits)

@@ -5,7 +5,7 @@ module QR
 
     def initialize lower_layer, config
       config[:format] = mask config[:format]
-      super lower_layer, config
+      super lower_layer
     end
 
     def mask format

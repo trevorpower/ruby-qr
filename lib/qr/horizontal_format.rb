@@ -1,5 +1,10 @@
 module QR
   class HorizontalFormat < Layer
+    
+    def initialize lower_layer, config
+      super lower_layer
+    end
+
     def module?(x, y, config)
       return super(x, y, config) if y != 8
       if x < 7
@@ -12,5 +17,6 @@ module QR
         super x, y, config 
       end
     end
+
   end
 end

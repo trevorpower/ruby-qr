@@ -3,7 +3,7 @@ module QR
 
     def initialize lower_level, config
       config[:format] = config[:format] + "001"
-      super lower_level, config
+      super lower_level
     end
 
     def module?(x, y, config)

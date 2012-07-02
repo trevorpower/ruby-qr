@@ -3,8 +3,8 @@ require 'qr/layer'
 module QR
   class Data < Layer
     def initialize(n, c)
-      super n, c
       @index = -1
+      super n
     end
 
     def module?(x, y, config)

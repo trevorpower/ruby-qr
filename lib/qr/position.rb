@@ -1,5 +1,10 @@
 module QR
   class Position < Layer
+
+    def initialize lower_layer, config
+      super lower_layer
+    end
+
     def firstSquare?(x, y)
       @x, @y = x, y
       x < 8 && y < 8

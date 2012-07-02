@@ -5,7 +5,7 @@ module QR
 
     def initialize lower_layer, config
       config[:data] = length(config[:data]) + config[:data]
-      super lower_layer, config
+      super lower_layer
     end
 
     def length(bits)

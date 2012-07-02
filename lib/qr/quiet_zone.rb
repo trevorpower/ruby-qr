@@ -2,7 +2,7 @@ class QR::QuietZone < QR::Layer
 
   def initialize (lower_layer, config, gap)
     @gap = gap
-    super lower_layer, config
+    super lower_layer
   end
 
   def max

@@ -2,7 +2,7 @@ class QR::Mode < QR::Layer
   
   def initialize(lower_level, config, mode)
     config[:data] = mode_bits(mode) + config[:data] 
-    super lower_level, config
+    super lower_level
   end
 
   def mode_bits mode

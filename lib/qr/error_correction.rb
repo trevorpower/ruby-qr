@@ -6,7 +6,7 @@ module QR
     def initialize lower_layer, config, level
       config[:data] = config[:data] + ErrorCorrection.error_code(config[:data])
       config[:format] = level_to_bits level
-      super lower_layer, config
+      super lower_layer
     end
 
     def level_to_bits level

@@ -3,8 +3,8 @@ require 'qr/layer'
 class QR::Content < QR::Layer
 
   def initialize lower_layer, config, content
-    super lower_layer, config
     config[:data] = bit_string content
+    super lower_layer
   end
 
   def bit_string data

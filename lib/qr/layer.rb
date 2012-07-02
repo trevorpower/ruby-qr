@@ -1,7 +1,7 @@
 module QR
   class Layer
 
-    def initialize(n, c)
+    def initialize(n)
       @next = n
     end 
 

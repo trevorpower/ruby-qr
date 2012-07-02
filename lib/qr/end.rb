@@ -4,7 +4,7 @@ class QR::Padding < QR::Layer
 
   def initialize lower_layer, config
     config[:data] = pad config[:data]
-    super lower_layer, config
+    super lower_layer
   end
   
   def pad data
