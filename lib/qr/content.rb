@@ -2,9 +2,9 @@ require 'qr/layer'
 
 module QR
   class Content < Layer
-    def initialize n, o
-      super n, o
+    def initialize n, c, o
       @content = o
+      super n, c, o
     end
 
     def configure config

@@ -1,7 +1,7 @@
 class QR::VerticalFormat < QR::Layer
 
-  def initialize(n, o)
-    super n, o
+  def initialize(n, c, o)
+    super n, c, o
   end
   
   def module?(x, y, config)

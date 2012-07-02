@@ -2,8 +2,8 @@ require 'qr/layer'
 
 module QR
   class Data < Layer
-    def initialize(n, o)
-      super n, o
+    def initialize(n, c, o)
+      super n, c, o
       @index = -1
     end
     def module?(x, y, config)

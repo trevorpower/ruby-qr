@@ -27,8 +27,7 @@ module QR
     end
 
     def add(name, options = nil)
-      @stack = QR.const_get(name).new @stack, options
-      @stack.configure @config
+      @stack = QR.const_get(name).new @stack, @config, options
     end
 
     def bits

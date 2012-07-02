@@ -1,8 +1,8 @@
 module QR
   class QuietZone < Layer
-    def initialize (n, g)
+    def initialize (n, c, g)
       @gap = g
-      super(n, g)
+      super(n, c, g)
     end
     def max
       super + @gap * 2
