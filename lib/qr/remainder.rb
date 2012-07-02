@@ -5,7 +5,7 @@ module QR
       super lower_layer
     end
 
-    def module?(x, y, config)
+    def module?(x, y, max, config)
       false
     end
 

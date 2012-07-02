@@ -4,8 +4,8 @@ class QR::Invert < QR::Layer
     super lower_level
   end
 
-  def module?(x, y, config)
-    !super x, y, config
+  def module? *args
+    ! super *args
   end
 
 end

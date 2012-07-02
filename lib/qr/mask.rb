@@ -6,8 +6,8 @@ module QR
       super lower_level
     end
 
-    def module?(x, y, config)
-      super(x, y, config) ^ (y % 2 == 0)
+    def module?(x, y, max, config)
+      super(x, y, max, config) ^ (y % 2 == 0)
     end
 
   end

@@ -5,8 +5,8 @@ module QR
       super lower_layer
     end
 
-    def module?(x, y, config)
-      return super(x, y, config) if y != 8
+    def module?(x, y, max, config)
+      return super(x, y, max, config) if y != 8
       if x < 7
         config[:format][x] == '1'
       elsif x == 7
@@ -14,7 +14,7 @@ module QR
       elsif max - x < 8
         config[:format][x - max + 14] == '1'
       else
-        super x, y, config 
+        super x, y, max, config 
       end
     end
 

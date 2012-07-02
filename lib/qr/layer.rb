@@ -5,12 +5,8 @@ module QR
       @next = n
     end 
 
-    def max
-      @next.max
-    end
-
-    def module?(x, y, config)
-      @next.module? x, y, config
+    def module? *args
+      @next.module? *args
     end
 
   end

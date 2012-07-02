@@ -4,13 +4,13 @@ class QR::VerticalFormat < QR::Layer
     super lower_layer
   end
 
-  def module?(x, y, config)
-    format_module?(x, y, config[:format]) do
-      super x, y, config
+  def module?(x, y, max, config)
+    format_module?(x, y, max, config[:format]) do
+      super x, y, max, config
     end
   end
 
-  def format_module? x, y, format
+  def format_module? x, y, max, format
     return yield if x != 8
     return true if max - y == 7
     if y < 8

@@ -33,25 +33,26 @@ module QR
 
     def bits
       puts @config.inspect
-      n = @stack.max + 1
+      max = @config[:max]
+      n = max + 1
       arr = []
       col = n
       while col > 0 
         n.downto(0).each do |row|
-          arr[row * n + col] = @stack.module? col, row, @config
-          arr[row * n + col - 1] = @stack.module? col -1, row, @config
+          arr[row * n + col] = @stack.module? col, row, max, @config
+          arr[row * n + col - 1] = @stack.module? col -1, row, max,  @config
         end
         break if col == 1
         col -= 2
         if col == 6
           n.downto(0).each do |row|
-            arr[row * n + col] = @stack.module? col, row, @config
+            arr[row * n + col] = @stack.module? col, row, max, @config
           end
           col -= 1
         end
         0.upto(n).each do |row|
-          arr[row * n + col] = @stack.module? col, row, @config
-          arr[row * n + col - 1] = @stack.module? col -1, row, @config
+          arr[row * n + col] = @stack.module? col, row, max, @config
+          arr[row * n + col - 1] = @stack.module? col -1, row, max, @config
         end
         col -= 2
       end
