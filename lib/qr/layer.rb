@@ -12,10 +12,6 @@ module QR
       @next.max
     end
 
-    def format
-      @next.format
-    end
-
     def module?(x, y, config)
       @next.module? x, y, config
     end

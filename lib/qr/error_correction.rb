@@ -23,12 +23,9 @@ module QR
       super n, o
     end
 
-    def format
-      @level
-    end
-
     def configure config
       config[:data] = config[:data] + ErrorCorrection.error_code(config[:data])
+      config[:format] = @level
     end
 
     def self.galois_field size, prime_modulus

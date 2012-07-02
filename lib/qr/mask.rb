@@ -1,8 +1,8 @@
 module QR
   class Mask < Layer
 
-    def format
-      super + "001"
+    def configure config
+      config[:format] = config[:format] + "001"
     end
 
     def module?(x, y, config)

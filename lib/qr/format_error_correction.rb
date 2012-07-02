@@ -4,8 +4,8 @@ require 'math/polynomial'
 module QR
   class FormatErrorCorrection < Layer
 
-    def format
-      super + bch(super)
+    def configure config
+      config[:format] = config[:format] + bch(config[:format])
     end
 
     def bch(bits)
