@@ -3,29 +3,19 @@ require 'qr/layer'
 module QR
   class ErrorCorrection < Layer
 
-    class Levels
-      def self.L
-        '01'
-      end
-      def self.M
-        '00'
-      end
-      def self.Q
-        '11'
-      end
-      def self.H
-        '10'
+    def level_to_bits level
+      case level
+        when :L then '01'
+        when :M then '00'
+        when :Q then '11'
+        when :H then '10'
       end
     end
 
-    def initialize n, c, o
-      @level = Levels.send(o)
-      super n, c
-    end
-
-    def configure config
+    def initialize lower_layer, config, level
       config[:data] = config[:data] + ErrorCorrection.error_code(config[:data])
-      config[:format] = @level
+      config[:format] = level_to_bits level
+      super lower_layer, config
     end
 
     def self.galois_field size, prime_modulus

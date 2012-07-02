@@ -2,8 +2,9 @@ require 'qr/layer'
 
 class QR::Padding < QR::Layer
 
-  def configure config
+  def initialize lower_layer, config
     config[:data] = pad config[:data]
+    super lower_layer, config
   end
   
   def pad data
