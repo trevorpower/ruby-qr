@@ -1,16 +1,16 @@
 require 'qr/layer'
 
-module QR
-  class Content < Layer
-    def initialize n, c, o
-      @content = o
-      super n, c, o
-    end
+class QR::Content < QR::Layer
 
-    def configure config
-      config[:data] = @content.each_byte.map {|b|
-        b.to_s(2).rjust(8, '0')
-      }.join
-    end
+  def initialize lower_layer, config, content
+    super lower_layer, config, nil
+    config[:data] = bit_string content
+  end
+
+  def bit_string data
+    data
+      .each_byte
+      .map {|b| b.to_s(2).rjust(8, '0') }
+      .join
   end
 end
