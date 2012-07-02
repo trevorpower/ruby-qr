@@ -24,7 +24,6 @@ module QR
       add :Position
       add :QuietZone, 3
       add :Invert
-      
     end
 
     def add(name, options = nil)
@@ -62,10 +61,5 @@ module QR
     def max
       @stack.max
     end
-    
-    def size
-      max + 1
-    end
-
   end
 end
