@@ -1,8 +1,9 @@
 module QR
   class Mask < Layer
 
-    def configure config
+    def initialize lower_level, config
       config[:format] = config[:format] + "001"
+      super lower_level, config
     end
 
     def module?(x, y, config)
