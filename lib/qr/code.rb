@@ -32,6 +32,7 @@ module QR
     end
 
     def bits
+      is_dark = @config[:module?]
       puts @config.inspect
       max = @config[:max]
       n = max + 1
@@ -39,20 +40,20 @@ module QR
       col = n
       while col > 0 
         n.downto(0).each do |row|
-          arr[row * n + col] = @stack.module? col, row, max, @config
-          arr[row * n + col - 1] = @stack.module? col -1, row, max,  @config
+          arr[row * n + col] = is_dark.call(col, row, max, @config)
+          arr[row * n + col - 1] = is_dark.call(col -1, row, max,  @config)
         end
         break if col == 1
         col -= 2
         if col == 6
           n.downto(0).each do |row|
-            arr[row * n + col] = @stack.module? col, row, max, @config
+            arr[row * n + col] = is_dark.call col, row, max, @config
           end
           col -= 1
         end
         0.upto(n).each do |row|
-          arr[row * n + col] = @stack.module? col, row, max, @config
-          arr[row * n + col - 1] = @stack.module? col -1, row, max, @config
+          arr[row * n + col] = is_dark.call col, row, max, @config
+          arr[row * n + col - 1] = is_dark.call col -1, row, max, @config
         end
         col -= 2
       end
