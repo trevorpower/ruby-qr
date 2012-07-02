@@ -6,9 +6,9 @@ module QR
       super n, o
       @index = -1
     end
-    def module?(x, y)
+    def module?(x, y, config)
       @index += 1 
-      data[@index] == '1'
+      config[:data][@index] == '1'
     end
   end
 end

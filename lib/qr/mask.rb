@@ -5,8 +5,8 @@ module QR
       super + "001"
     end
 
-    def module?(x, y)
-      super(x, y) ^ (y % 2 == 0)
+    def module?(x, y, config)
+      super(x, y, config) ^ (y % 2 == 0)
     end
 
   end

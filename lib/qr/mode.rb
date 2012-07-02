@@ -18,8 +18,8 @@ module QR
       @mode = QR::Modes.send o
       super n, o
     end
-    def data
-      @mode + super
+    def configure config
+      config[:data] = @mode + config[:data] 
     end
   end
 end

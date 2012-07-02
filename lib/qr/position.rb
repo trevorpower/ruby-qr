@@ -7,8 +7,8 @@ module QR
     def square?(x, y)
       firstSquare?(x, y) || firstSquare?(max - x, y) || firstSquare?(x, max - y)
     end
-    def module?(x, y)
-      return @next.module?(x, y) unless square?(x, y)
+    def module?(x, y, config)
+      return @next.module?(x, y, config) unless square?(x, y)
       return false if @x == 7 || @y == 7
       return true if @x == 0 || @x == 6
       return true if @y == 0 || @y == 6

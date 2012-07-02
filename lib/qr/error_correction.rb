@@ -27,8 +27,8 @@ module QR
       @level
     end
 
-    def data
-      super + ErrorCorrection.error_code(super)
+    def configure config
+      config[:data] = config[:data] + ErrorCorrection.error_code(config[:data])
     end
 
     def self.galois_field size, prime_modulus

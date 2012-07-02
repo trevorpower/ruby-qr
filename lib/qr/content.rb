@@ -7,8 +7,8 @@ module QR
       @content = o
     end
 
-    def data
-      @content.each_byte.map {|b|
+    def configure config
+      config[:data] = @content.each_byte.map {|b|
         b.to_s(2).rjust(8, '0')
       }.join
     end

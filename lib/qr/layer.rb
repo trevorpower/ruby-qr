@@ -6,7 +6,6 @@ module QR
     end 
 
     def configure(config)
-
     end
 
     def max
@@ -17,12 +16,8 @@ module QR
       @next.format
     end
 
-    def data
-      @next.data
-    end
-
-    def module?(x, y)
-      @next.module? x, y
+    def module?(x, y, config)
+      @next.module? x, y, config
     end
 
   end
