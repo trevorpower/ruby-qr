@@ -1,17 +1,20 @@
-module QR
-  class QuietZone < Layer
-    def initialize (n, c, g)
-      @gap = g
-      super n, c
-    end
-    def max
-      super + @gap * 2
-    end
-    def module?(x, y, config)
-      return false if x < @gap || y < @gap
-      return false if x > max - @gap || y > max - @gap
-      @next.module?(x - @gap, y - @gap, config)
-    end
+class QR::QuietZone < QR::Layer
+
+  def initialize (lower_layer, config, gap)
+    @gap = gap
+    super lower_layer, config
+  end
+
+  def max
+    super + @gap * 2
+  end
+
+  def module?(x, y, config)
+    return false if quiet_zone? x, y
+    @next.module?(x - @gap, y - @gap, config)
+  end
+
+  def quiet_zone? x, y
+    x < @gap || y < @gap || x > max - @gap || y > max - @gap
   end
 end
-
