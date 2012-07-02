@@ -16,7 +16,7 @@ module QR
   class Mode < Layer
     def initialize(n, c, o)
       @mode = QR::Modes.send o
-      super n, c, o
+      super n, c
     end
     def configure config
       config[:data] = @mode + config[:data] 

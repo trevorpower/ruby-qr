@@ -20,7 +20,7 @@ module QR
 
     def initialize n, c, o
       @level = Levels.send(o)
-      super n, c, o
+      super n, c
     end
 
     def configure config

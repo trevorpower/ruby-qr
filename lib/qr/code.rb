@@ -26,8 +26,8 @@ module QR
       add :Invert
     end
 
-    def add(name, options = nil)
-      @stack = QR.const_get(name).new @stack, @config, options
+    def add(name, *options)
+      @stack = QR.const_get(name).new @stack, @config, *options
     end
 
     def bits
