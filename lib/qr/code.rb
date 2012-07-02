@@ -58,8 +58,5 @@ module QR
       [arr, n]
     end
 
-    def max
-      @stack.max
-    end
   end
 end
