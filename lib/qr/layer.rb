@@ -2,12 +2,8 @@ module QR
   class Layer
 
     def initialize(n, c)
-      configure c
       @next = n
     end 
-
-    def configure(config)
-    end
 
     def max
       @next.max
