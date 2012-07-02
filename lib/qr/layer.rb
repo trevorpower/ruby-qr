@@ -1,12 +1,12 @@
 module QR
   class Layer
 
-    def initialize(n)
-      @next = n
+    def initialize(lower_layer)
+      @lower_layer = lower_layer
     end 
 
     def module? *args
-      @next.module? *args
+      @lower_layer.module? *args
     end
 
   end
