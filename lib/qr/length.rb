@@ -2,8 +2,10 @@ require 'qr/layer'
 
 module QR
   class Length < Layer
-    def configure config
+
+    def initialize lower_layer, config
       config[:data] = length(config[:data]) + config[:data]
+      super lower_layer, config
     end
 
     def length(bits)
