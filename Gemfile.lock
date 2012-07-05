@@ -1,0 +1,14 @@
+GIT
+  remote: git://github.com/trevorpower/block-stack.git
+  revision: 44d66a41e9eef02ec57ad7c05cb632fd1ed37cfe
+  specs:
+    block-stack (0.0.1)
+
+GEM
+  specs:
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  block-stack!
