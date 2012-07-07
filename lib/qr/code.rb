@@ -11,16 +11,9 @@ module QR
     end
   end
 
-  module Stack
-    def module? *a
-      @stack.module? *a
-    end
-  end
-
   class Code 
 
     include Remainder 
-    include Stack
 
     def initialize(content)
       @config = {}
@@ -39,7 +32,7 @@ module QR
       add :HorizontalFormat 
 
       @is_dark = BlockStack.new
-      @is_dark.push{|*a| module? *a}
+      @is_dark.push{|*a| @stack.module? *a}
 
       @max = BlockStack.new
       @max << proc { @config[:max] }
