@@ -42,6 +42,9 @@ module QR
       @is_dark = BlockStack.new
       @is_dark.push{|*a| module? *a}
 
+      @max = BlockStack.new
+      @max << proc { @config[:max] }
+
       #timing
       is_dark? << lambda do |x, y, *a|
         return y % 2 == 0 if x == 6
@@ -68,7 +71,8 @@ module QR
 
       #quiet zone
       gap = 3
-      @config[:max] = @config[:max] + gap * 2
+
+      @max << proc { peek! + gap * 2 }
 
       is_dark? << proc do |x, y, max, config|
         x >= gap &&
@@ -93,7 +97,7 @@ module QR
     def bits
       is_dark = @config[:module?]
       puts @config.inspect
-      max = @config[:max]
+      max = @max.peek
       n = max + 1
       arr = []
       col = n
