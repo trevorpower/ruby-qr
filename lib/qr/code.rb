@@ -37,7 +37,6 @@ module QR
       add :FormatMask
       add :VerticalFormat 
       add :HorizontalFormat 
-      #add :Timing
 
       @is_dark = BlockStack.new
       @is_dark.push{|*a| module? *a}
@@ -45,49 +44,55 @@ module QR
       @max = BlockStack.new
       @max << proc { @config[:max] }
 
-      #timing
-      is_dark? << lambda do |x, y, *a|
-        return y % 2 == 0 if x == 6
-        return x % 2 == 0 if y == 6
-        peek!
-      end
-
-      #position squares
-      is_dark? << lambda do |x, y, max, config|
-        transforms = [[x, y], [max - x, y], [x, max - y]]
-        transforms.select! do |x, y|
-          x < 8 && y < 8
-        end
-        if transforms.empty?
+      timing do
+        is_dark? << lambda do |x, y, *a|
+          return y % 2 == 0 if x == 6
+          return x % 2 == 0 if y == 6
           peek!
-        else
-          x, y = transforms.first 
-          return false if x == 7 || y == 7
-          return true if x == 0 || x == 6
-          return true if y == 0 || y == 6
-          x != 1 && y != 1 && x != 5 && y != 5
         end
       end
 
-      #quiet zone
-      gap = 3
-
-      @max << proc { peek! + gap * 2 }
-
-      is_dark? << proc do |x, y, max, config|
-        x >= gap &&
-        x <= max - gap &&
-        y >= gap && 
-        y <= max - gap && 
-        peek(x - gap, y - gap, max - gap * 2, config)
+      position_squares do
+        is_dark? << lambda do |x, y, max, config|
+          transforms = [[x, y], [max - x, y], [x, max - y]]
+          transforms.select! do |x, y|
+            x < 8 && y < 8
+          end
+          if transforms.empty?
+            peek!
+          else
+            x, y = transforms.first 
+            return false if x == 7 || y == 7
+            return true if x == 0 || x == 6
+            return true if y == 0 || y == 6
+            x != 1 && y != 1 && x != 5 && y != 5
+          end
+        end
       end
 
-      #invert
-      is_dark? << proc { !peek! }
+      quiet_zone 3 do |gap|
+        @max << proc { peek! + gap * 2 }
+
+        is_dark? << proc do |x, y, max, config|
+          x >= gap &&
+          x <= max - gap &&
+          y >= gap && 
+          y <= max - gap && 
+          peek(x - gap, y - gap, max - gap * 2, config)
+        end
+      end
+
+      invert do
+        is_dark? << proc { !peek! }
+      end
     end
 
     def is_dark?
       @is_dark
+    end
+
+    def method_missing name, *args, &block
+      block.call *args
     end
 
     def add(name, *options)
