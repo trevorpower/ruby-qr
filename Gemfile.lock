@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/trevorpower/block-stack.git
-  revision: 44d66a41e9eef02ec57ad7c05cb632fd1ed37cfe
+  revision: a24017d20e98adec498488709c98772b9f249303
   specs:
     block-stack (0.0.1)
 

@@ -1,7 +1,10 @@
 require 'printer'
 Dir[File.dirname(__FILE__) + '/*.rb'].each{|f| require f}
 
+require 'block_stack'
+
 module QR
+
 
   module Remainder
     def module? *a
@@ -15,17 +18,10 @@ module QR
     end
   end
 
-  module Invert
-    def module? *a
-      ! super
-    end
-  end
-
   class Code 
 
     include Remainder 
     include Stack
-    include Invert 
 
     def initialize(content)
       @config = {}
@@ -45,6 +41,15 @@ module QR
       add :Timing
       add :Position
       add :QuietZone, 3
+
+      @is_dark = BlockStack.new
+      @is_dark.push{|*a| module? *a}
+
+
+      #invert
+      @is_dark.push do
+        ! peek!
+      end
     end
 
     def add(name, *options)
@@ -60,20 +65,20 @@ module QR
       col = n
       while col > 0 
         n.downto(0).each do |row|
-          arr[row * n + col] = module?(col, row, max, @config)
-          arr[row * n + col - 1] = module?(col -1, row, max,  @config)
+          arr[row * n + col] = @is_dark.peek(col, row, max, @config)
+          arr[row * n + col - 1] = @is_dark.peek(col -1, row, max,  @config)
         end
         break if col == 1
         col -= 2
         if col == 6
           n.downto(0).each do |row|
-            arr[row * n + col] = module? col, row, max, @config
+            arr[row * n + col] = @is_dark.peek col, row, max, @config
           end
           col -= 1
         end
         0.upto(n).each do |row|
-          arr[row * n + col] = module? col, row, max, @config
-          arr[row * n + col - 1] = module? col -1, row, max, @config
+          arr[row * n + col] = @is_dark.peek col, row, max, @config
+          arr[row * n + col - 1] = @is_dark.peek  col -1, row, max, @config
         end
         col -= 2
       end
