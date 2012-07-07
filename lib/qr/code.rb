@@ -43,14 +43,14 @@ module QR
       @is_dark.push{|*a| module? *a}
 
       #timing
-      @is_dark << lambda do |x, y, *a|
+      is_dark? << lambda do |x, y, *a|
         return y % 2 == 0 if x == 6
         return x % 2 == 0 if y == 6
         peek!
       end
 
       #position squares
-      @is_dark << lambda do |x, y, max, config|
+      is_dark? << lambda do |x, y, max, config|
         transforms = [[x, y], [max - x, y], [x, max - y]]
         transforms.select! do |x, y|
           x < 8 && y < 8
@@ -70,7 +70,7 @@ module QR
       gap = 3
       @config[:max] = @config[:max] + gap * 2
 
-      @is_dark.push do |x, y, max, config|
+      is_dark? << proc do |x, y, max, config|
         x >= gap &&
         x <= max - gap &&
         y >= gap && 
@@ -79,9 +79,11 @@ module QR
       end
 
       #invert
-      @is_dark.push do
-        ! peek!
-      end
+      is_dark? << proc { !peek! }
+    end
+
+    def is_dark?
+      @is_dark
     end
 
     def add(name, *options)
