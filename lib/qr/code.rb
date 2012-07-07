@@ -5,7 +5,6 @@ require 'block_stack'
 
 module QR
 
-
   module Remainder
     def module? *a
       false
@@ -40,11 +39,21 @@ module QR
       add :HorizontalFormat 
       add :Timing
       add :Position
-      add :QuietZone, 3
 
       @is_dark = BlockStack.new
       @is_dark.push{|*a| module? *a}
 
+      #quiet zone
+      gap = 3
+      @config[:max] = @config[:max] + gap * 2
+
+      @is_dark.push do |x, y, max, config|
+        x >= gap &&
+        x <= max - gap &&
+        y >= gap && 
+        y <= max - gap && 
+        peek(x - gap, y - gap, max - gap * 2, config)
+      end
 
       #invert
       @is_dark.push do
