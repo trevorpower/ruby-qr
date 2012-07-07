@@ -37,10 +37,17 @@ module QR
       add :FormatMask
       add :VerticalFormat 
       add :HorizontalFormat 
-      add :Timing
+      #add :Timing
 
       @is_dark = BlockStack.new
       @is_dark.push{|*a| module? *a}
+
+      #timing
+      @is_dark << lambda do |x, y, *a|
+        return y % 2 == 0 if x == 6
+        return x % 2 == 0 if y == 6
+        peek!
+      end
 
       #position squares
       @is_dark << lambda do |x, y, max, config|
