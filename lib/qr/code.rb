@@ -33,9 +33,12 @@ module QR
 
       @format_bits_stack = BlockStack.new
       @format_bits_stack.push{ @config[:format] }
-      @format_bits_stack.push do
-        format = peek!
-        format + QR::Math.bch(format)
+
+      format_bits_error_correction do
+        @format_bits_stack.push do
+          format = peek!
+          format + QR::Math.bch(format)
+        end
       end
 
       @max = BlockStack.new
