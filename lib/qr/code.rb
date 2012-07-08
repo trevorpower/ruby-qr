@@ -2,6 +2,7 @@ require 'printer'
 Dir[File.dirname(__FILE__) + '/*.rb'].each{|f| require f}
 
 require 'block_stack'
+require 'math/bch'
 
 module QR
 
@@ -26,13 +27,16 @@ module QR
       add :ErrorCorrection, :L 
       add :Data
       add :Mask
-      add :FormatErrorCorrection
 
       @is_dark = BlockStack.new
       @is_dark.push{|*a| @stack.module? *a}
 
       @format_bits_stack = BlockStack.new
       @format_bits_stack.push{ @config[:format] }
+      @format_bits_stack.push do
+        format = peek!
+        format + QR::Math.bch(format)
+      end
 
       @max = BlockStack.new
       @max << proc { @config[:max] }
