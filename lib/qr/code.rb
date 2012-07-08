@@ -28,7 +28,6 @@ module QR
       add :Mask
       add :FormatErrorCorrection
       add :FormatMask
-      add :VerticalFormat 
 
       @is_dark = BlockStack.new
       @is_dark.push{|*a| @stack.module? *a}
@@ -36,21 +35,8 @@ module QR
       @max = BlockStack.new
       @max << proc { @config[:max] }
 
-      horizontal_format do
-        is_dark? << proc do |x, y, max, config|
-          if y != 8
-            peek!
-          elsif x < 7
-            config[:format][x] == '1'
-          elsif x == 7
-            config[:format][6] == '1'
-          elsif max - x < 8
-            config[:format][x - max + 14] == '1'
-          else
-            peek!
-          end
-        end
-      end
+      vertical_format
+      horizontal_format
 
       timing do
         is_dark? << lambda do |x, y, *a|
@@ -92,6 +78,39 @@ module QR
 
       invert do
         is_dark? << proc { !peek! }
+      end
+    end
+
+    def vertical_format
+      is_dark? << proc do |x, y, max, config|
+        format = config[:format]
+        if x != 8
+          peek!
+        elsif max - y == 7
+          true
+        elsif y < 8
+          format[14 - y] == '1'
+        elsif max - y < 7
+          format[max - y] == '1'
+        else
+          peek!
+        end
+      end
+    end
+
+    def horizontal_format
+      is_dark? << proc do |x, y, max, config|
+        if y != 8
+          peek!
+        elsif x < 7
+          config[:format][x] == '1'
+        elsif x == 7
+          config[:format][6] == '1'
+        elsif max - x < 8
+          config[:format][x - max + 14] == '1'
+        else
+          peek!
+        end
       end
     end
 
