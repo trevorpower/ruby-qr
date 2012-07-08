@@ -27,13 +27,24 @@ module QR
       add :Data
       add :Mask
       add :FormatErrorCorrection
-      add :FormatMask
 
       @is_dark = BlockStack.new
       @is_dark.push{|*a| @stack.module? *a}
 
+      @format_bits_stack = BlockStack.new
+      @format_bits_stack.push{ @config[:format] }
+
       @max = BlockStack.new
       @max << proc { @config[:max] }
+
+      @format_bits_stack << proc do
+        peek!
+          .chars
+          .map{|c| c.to_i}
+          .zip('101010000010010'.chars.map{|c| c.to_i})
+          .map{|a,b| a ^ b}
+          .join
+      end
 
       vertical_format
       horizontal_format
@@ -127,8 +138,8 @@ module QR
     end
 
     def bits
+      @config[:format] = @format_bits_stack.peek
       is_dark = @config[:module?]
-      puts @config.inspect
       max = @max.peek
       n = max + 1
       arr = []
