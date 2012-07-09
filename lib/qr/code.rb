@@ -99,14 +99,6 @@ module QR
 
     attr_accessor :quiet_zone_gap
 
-    def format
-      ''
-    end
-
-    def data
-      ''
-    end
-
     def initialize(content)
 
       @content = content
