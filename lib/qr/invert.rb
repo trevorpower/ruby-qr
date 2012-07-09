@@ -1,6 +1,6 @@
-#module QR::Invert
-#  def module? *a
-#    ! super
-#  end
-#end
+module QR::Invert
+  def module? *a
+    ! super
+  end
+end
 

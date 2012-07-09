@@ -5,12 +5,6 @@ require 'math/bch'
 
 module QR
 
-  module Invert
-    def module? *a
-      !super
-    end
-  end
-
   class Code 
 
     attr_accessor :quiet_zone_gap
