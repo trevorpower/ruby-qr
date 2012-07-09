@@ -100,7 +100,6 @@ module QR
     end
 
     def bits
-      @config[:format] = format
       n = max + 1
       arr = []
       col = n
