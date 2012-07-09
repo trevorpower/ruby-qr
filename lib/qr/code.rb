@@ -5,17 +5,6 @@ require 'math/bch'
 
 module QR
 
-  module FormatMask
-    def format
-      super
-        .chars
-        .map{|c| c.to_i}
-        .zip('101010000010010'.chars.map{|c| c.to_i})
-        .map{|a,b| a ^ b}
-        .join
-    end
-  end
-
   module Timing
     def module? x, y, *a
       return y % 2 == 0 if x == 6
