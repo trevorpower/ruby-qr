@@ -1,7 +1,6 @@
 require 'printer'
 Dir[File.dirname(__FILE__) + '/*.rb'].each{|f| require f}
 
-require 'block_stack'
 require 'math/bch'
 
 module QR
