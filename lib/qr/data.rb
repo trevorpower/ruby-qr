@@ -1,11 +1,7 @@
-require 'qr/layer'
-
-module QR
-  module Data
-    def module?(x, y, max, config)
-      @index = -1 if @index.nil?
-      @index += 1 
-      config[:data][@index] == '1'
-    end
+module QR::Data
+  def module?(x, y, max, config)
+    @index = -1 if @index.nil?
+    @index += 1 
+    data[@index] == '1'
   end
 end

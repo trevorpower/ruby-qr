@@ -109,16 +109,21 @@ module QR
 
       extend Remainder
       extend Size # should be different for each version
+
       extend Content
       extend Length
       extend Mode
       extend End
+
       extend Padding
       extend ErrorCorrection
+
       extend Data
       extend Mask
+
       extend FormatErrorCorrection
       extend FormatMask
+
       extend VerticalFormat
       extend HorizontalFormat
       extend Timing
@@ -129,7 +134,6 @@ module QR
 
     def bits
       @config[:format] = format
-      @config[:data] = data
       n = max + 1
       arr = []
       col = n
