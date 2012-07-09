@@ -25,7 +25,7 @@ module QR
   end
 
   module PositionSquares
-    def module? x, y, max, config
+    def module? x, y, max
       transforms = [[x, y], [max - x, y], [x, max - y]]
       transforms.select! do |x, y|
         x < 8 && y < 8
@@ -47,12 +47,12 @@ module QR
       super + quiet_zone_gap * 2
     end
 
-    def module? x, y, max, config
+    def module? x, y, max
       x >= quiet_zone_gap &&
       x <= max - quiet_zone_gap &&
       y >= quiet_zone_gap && 
       y <= max - quiet_zone_gap && 
-      super(x - quiet_zone_gap, y - quiet_zone_gap, max - quiet_zone_gap * 2, config)
+      super(x - quiet_zone_gap, y - quiet_zone_gap, max - quiet_zone_gap * 2)
     end
   end
 
@@ -72,7 +72,6 @@ module QR
       @mode = :byte
       @level = :L
       @quiet_zone_gap = 3
-      @config = {}
 
       extend Remainder
       extend Size # should be different for each version
@@ -105,20 +104,20 @@ module QR
       col = n
       while col > 0 
         n.downto(0).each do |row|
-          arr[row * n + col] = module?(col, row, max, @config)
-          arr[row * n + col - 1] = module?(col -1, row, max,  @config)
+          arr[row * n + col] = module? col, row, max
+          arr[row * n + col - 1] = module? col -1, row, max
         end
         break if col == 1
         col -= 2
         if col == 6
           n.downto(0).each do |row|
-            arr[row * n + col] = module? col, row, max, @config
+            arr[row * n + col] = module? col, row, max
           end
           col -= 1
         end
         0.upto(n).each do |row|
-          arr[row * n + col] = module? col, row, max, @config
-          arr[row * n + col - 1] = module?  col -1, row, max, @config
+          arr[row * n + col] = module? col, row, max
+          arr[row * n + col - 1] = module?  col -1, row, max
         end
         col -= 2
       end

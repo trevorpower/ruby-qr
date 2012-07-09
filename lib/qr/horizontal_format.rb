@@ -1,5 +1,5 @@
 module QR::HorizontalFormat
-  def module? x, y, max, config
+  def module? x, y, max
     if y != 8
       super
     elsif x < 7

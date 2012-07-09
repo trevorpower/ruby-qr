@@ -1,5 +1,5 @@
 module QR::VerticalFormat
-  def module? x, y, max, config
+  def module? x, y, max
     if x != 8
       super
     elsif max - y == 7
