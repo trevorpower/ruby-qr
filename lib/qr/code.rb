@@ -5,14 +5,6 @@ require 'math/bch'
 
 module QR
 
-  module Timing
-    def module? x, y, *a
-      return y % 2 == 0 if x == 6
-      return x % 2 == 0 if y == 6
-      super
-    end
-  end
-
   module PositionSquares
     def module? x, y, max
       transforms = [[x, y], [max - x, y], [x, max - y]]
