@@ -5,12 +5,6 @@ require 'math/bch'
 
 module QR
 
-  module Remainder
-    def module? *a
-      false
-    end
-  end
-
   module FormatErrorCorrection
     def format
       super + QR::Math.bch(super)
