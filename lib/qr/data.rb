@@ -1,13 +1,9 @@
 require 'qr/layer'
 
 module QR
-  class Data < Layer
-    def initialize(n, c)
-      @index = -1
-      super n
-    end
-
+  module Data
     def module?(x, y, max, config)
+      @index = -1 if @index.nil?
       @index += 1 
       config[:data][@index] == '1'
     end

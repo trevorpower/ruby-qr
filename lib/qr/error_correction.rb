@@ -1,12 +1,14 @@
 require 'qr/layer'
 
 module QR
-  class ErrorCorrection < Layer
+  module ErrorCorrection
 
-    def initialize lower_layer, config, level
-      config[:data] = config[:data] + ErrorCorrection.error_code(config[:data])
-      config[:format] = level_to_bits level
-      super lower_layer
+    def data
+      super + ErrorCorrection.error_code(super)
+    end
+
+    def format
+      level_to_bits @level
     end
 
     def level_to_bits level
@@ -59,6 +61,5 @@ module QR
         .map{|s| s.rjust 8, ?0}
         .join
     end
-
   end
 end

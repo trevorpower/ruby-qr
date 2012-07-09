@@ -1,8 +1,7 @@
-class QR::Size < QR::Layer
+module QR::Size
 
-  def initialize(lower_level, config, size)
-    config[:max] = size - 1
-    super lower_level
+  def max
+    20
   end
 
 end

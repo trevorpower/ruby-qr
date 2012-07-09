@@ -1,10 +1,7 @@
-require 'qr/layer'
-
-class QR::End < QR::Layer
+module QR::End
   
-  def initialize lower_level, config
-    config[:data] = config[:data] + "0000"
-    super lower_level
+  def data
+    super + "0000"
   end
 
 end
