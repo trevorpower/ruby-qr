@@ -1,4 +1,4 @@
-require 'qr/layer'
+require 'math/bch'
 
 module QR
   module ErrorCorrection
