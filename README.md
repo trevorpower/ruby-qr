@@ -14,20 +14,5 @@ The current method used is extend the instance of the QR code object with wach o
  * format
  * data_column?
 
-Sample output:
-<pre>
-                           
-   ▄▄▄▄▄▄▄ ▄▄    ▄▄▄▄▄▄▄   
-   █ ▄▄▄ █ ▀█▄█  █ ▄▄▄ █   
-   █ ███ █ ▄▄█▄  █ ███ █   
-   █▄▄▄▄▄█ █ ▄▀▄ █▄▄▄▄▄█   
-   ▄▄▄  ▄▄ █▄ ▀▄▄▄▄▄  ▄▄   
-    █▀▄▄ ▄ █▀█▀█▀▀ █▀▄ █   
-   ▀▄  ▄▄▄█ █▄▄█▀ ▀██ ▄    
-   ▄▄▄▄▄▄▄ ▀ █▀█▄ ▀▄██ ▄   
-   █ ▄▄▄ █ ▀█ ▄▄█ ▄▄█ ▄█   
-   █ ███ █ ▄██▄███▄███▄█   
-   █▄▄▄▄▄█ ██  ▄█ ▀▀█  ▄   
-                           
-                           
-</pre>
+Sample output when run from a terminal:
+![Sample](sample.png)
