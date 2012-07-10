@@ -6,7 +6,7 @@ module QR
 
     attr_accessor :quiet_zone_gap
 
-    def initialize(content)
+    def initialize(content, invert = false)
       @content = content
       @mode = :byte
       @level = :L
@@ -34,7 +34,8 @@ module QR
       extend Timing
       extend PositionSquares
       extend QuietZone
-      extend Invert
+
+      extend Invert if invert
     end
 
     def bits

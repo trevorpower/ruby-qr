@@ -1,6 +1,8 @@
 require 'qr/code'
 require 'printer'
 
+invert = ARGV.include? '-i'
+ARGV.delete '-i'
 
-
-Printer.printBits *QR::Code.new(ARGV.first).bits
+qr = QR::Code.new(ARGV.first, invert)
+Printer.printBits *qr.bits

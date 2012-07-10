@@ -1,4 +1,5 @@
 module QR::QuietZone
+
   def max
     super + quiet_zone_gap * 2
   end
@@ -10,5 +11,6 @@ module QR::QuietZone
     y <= max - quiet_zone_gap && 
     super(x - quiet_zone_gap, y - quiet_zone_gap, max - quiet_zone_gap * 2)
   end
+
 end
 
