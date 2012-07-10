@@ -15,4 +15,4 @@ The current method used is extend the instance of the QR code object with wach o
  * data_column?
 
 Sample output when run from a terminal:
-![Sample](sample.png)
+![Sample](http://github.com/trevorpower/ruby-qr/raw/master/sample.png)
