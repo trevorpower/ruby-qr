@@ -41,24 +41,33 @@ module QR
     def bits
       n = max + 1
       arr = []
-      col = n
-      rows = n.downto(0).to_a
+      each_module(n) do |row, col|
+        arr[row * n + col] = dark? col, row, max
+      end
+      [arr, n]
+    end
+
+    # Visit each module in the code in a certain order that
+    # allows for the data bits to be find there correct
+    # position.
+    def each_module size
+      col = size
+      rows = size.downto(0).to_a
       while col > 0 
         if data_column? col
           rows.each do |row|
-            arr[row * n + col] = dark? col, row, max
-            arr[row * n + col - 1] = dark? col -1, row, max
+            yield row, col
+            yield row, col - 1
           end
           col -= 2
           rows.reverse!
         else
           rows.each do |row|
-            arr[row * n + col] = dark? col, row, max
+            yield row, col
           end
           col -= 1
         end
       end
-      [arr, n]
     end
 
   end
