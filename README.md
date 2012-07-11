@@ -1,22 +1,29 @@
 Ruby QR
 =======
 
-QR barcode generation in Ruby. __(not to be used, programming exercise)__
+QR barcode generation in Ruby. 
+
+## Not to be used, Programming exercise
 
 This is just the result of me trying to learn more about QR codes and improve my Ruby skills. It is not intended to be used in any way.
 
-I have experimented with differnt ways of composing code out of simple modules.
+## How to Use
 
-The current method used is extend the instance of the QR code object with wach og the differnet modules involved. Each module can affect the final code by implementing one of the following methods.
- * is_dark? x, y, max
- * max
- * data
- * format
- * data_column?
+    ruby -Ilib qr.rb 'Hello World!'
 
 Sample output when run from a terminal:
 
 ![Sample](http://github.com/trevorpower/ruby-qr/raw/master/sample.png)
+
+## Algorithm Composition
+I have experimented with differnt ways of composing code parts of the algorithm out of simple modules.
+
+The current method, extends the instance of a QR code object with wach of the different modules involved. Each module can affect the final code by implementing one of the following methods.
+ * dark?
+ * max
+ * data
+ * format
+ * data_column?
 
 ### dark? x, y, max
 Returns true if the module at position x,y should be dark.
