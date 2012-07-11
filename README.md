@@ -19,4 +19,6 @@ Sample output when run from a terminal:
 ![Sample](http://github.com/trevorpower/ruby-qr/raw/master/sample.png)
 
 ### format
-The format function returns the format bits to be used in the final code. The format indicates which error correction level is used for the data as well as what mask is applied to the data.
+The `format` function returns the format bits to be used in the final code. The format indicates which error correction level is used for the data as well as what mask is applied to the data. This function is thus overriden by all error correction modules and mask modules.
+
+The format bit themselves have error correction and a mask applied, it is therefore overriden by the `FormatMask` and and `FormatErrorCorrection` modules. 
