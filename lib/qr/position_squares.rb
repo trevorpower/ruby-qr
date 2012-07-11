@@ -1,5 +1,5 @@
 module QR::PositionSquares
-  def module? x, y, max
+  def dark? x, y, max
     transforms = [[x, y], [max - x, y], [x, max - y]]
 
     transforms.select! do |x, y|

@@ -46,14 +46,14 @@ module QR
       while col > 0 
         if data_column? col
           rows.each do |row|
-            arr[row * n + col] = module? col, row, max
-            arr[row * n + col - 1] = module? col -1, row, max
+            arr[row * n + col] = dark? col, row, max
+            arr[row * n + col - 1] = dark? col -1, row, max
           end
           col -= 2
           rows.reverse!
         else
           rows.each do |row|
-            arr[row * n + col] = module? col, row, max
+            arr[row * n + col] = dark? col, row, max
           end
           col -= 1
         end

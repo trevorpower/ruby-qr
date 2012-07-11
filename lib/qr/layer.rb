@@ -5,7 +5,7 @@ module QR
       @lower_layer = lower_layer
     end 
 
-    def module? *args
+    def dark? *args
       @lower_layer.module? *args
     end
 

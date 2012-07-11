@@ -8,7 +8,7 @@ This is just the result of me trying to learn more about QR codes and improve my
 I have experimented with differnt ways of composing code out of simple modules.
 
 The current method used is extend the instance of the QR code object with wach og the differnet modules involved. Each module can affect the final code by implementing one of the following methods.
- * module? x, y, max
+ * is_dark? x, y, max
  * max
  * data
  * format
@@ -18,7 +18,7 @@ Sample output when run from a terminal:
 
 ![Sample](http://github.com/trevorpower/ruby-qr/raw/master/sample.png)
 
-### module? x, y, max
+### dark? x, y, max
 Returns true if the module at position x,y should be dark.
 
 ### max

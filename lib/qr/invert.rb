@@ -1,5 +1,5 @@
 module QR::Invert
-  def module? *a
+  def dark? *a
     ! super
   end
 end

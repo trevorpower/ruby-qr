@@ -4,7 +4,7 @@ module QR::Mask
     super + "001"
   end
 
-  def module?(x, y, *a)
+  def dark?(x, y, *a)
     super ^ (y % 2 == 0)
   end
 

@@ -1,5 +1,5 @@
 module QR::VerticalFormat
-  def module? x, y, max
+  def dark? x, y, max
     if x != 8
       super
     elsif max - y == 7

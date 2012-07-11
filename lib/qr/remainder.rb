@@ -1,5 +1,5 @@
 module QR::Remainder
-  def module? *a
+  def dark? *a
     false
   end
 end
