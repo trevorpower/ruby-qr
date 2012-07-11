@@ -1,8 +1,8 @@
 module QR
-  module End
-  
+  module Padding
+
     def data
-      super + "0000"
+      super.ljust(8 * 19, '1110110000010001')
     end
 
   end
