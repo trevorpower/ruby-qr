@@ -32,6 +32,7 @@ module QR
       extend VerticalFormat
       extend HorizontalFormat
       extend Timing
+      extend Alignment
       extend PositionSquares
       extend QuietZone
 
