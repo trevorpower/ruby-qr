@@ -13,7 +13,7 @@ module QR
       @quiet_zone_gap = 3
 
       extend Remainder
-      extend Versions[1]
+      extend Versions.first
 
       extend Content
       extend Length
