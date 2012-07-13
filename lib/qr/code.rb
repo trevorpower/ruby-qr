@@ -4,8 +4,7 @@ module QR
 
   class Code 
 
-    include Version
-    attr_accessor :quiet_zone_gap, :content
+    attr_accessor :quiet_zone_gap, :content, :version
 
     def initialize(content, invert = false)
       @content = content
@@ -19,7 +18,7 @@ module QR
       extend Mode::Byte
       extend End
 
-      version 1
+      @version = Version.all.first
 
       extend Padding
       extend ErrorCorrection
