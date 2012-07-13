@@ -8,7 +8,6 @@ module QR
 
     def initialize(content, invert = false)
       @content = content
-      @mode = :byte
       @level = :L
       @quiet_zone_gap = 3
 
@@ -16,7 +15,7 @@ module QR
 
       extend Content
       extend Length
-      extend Mode
+      extend Mode::Byte
       extend End
 
       extend Versions[0]

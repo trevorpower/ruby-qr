@@ -1,16 +1,11 @@
-module QR::Mode
-  
-  def data
-    mode_bits(@mode) + super
-  end
+module QR
+  module Mode
 
-  def mode_bits mode
-    case mode
-      when :numeric then '0001'
-      when :alphanumeric then '0010'
-      when :byte then '0100'
-      when :eom then '0000'
+    module Byte
+      def data
+        '0100' + super
+      end
     end
-  end
 
+  end
 end
