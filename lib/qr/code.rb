@@ -4,7 +4,7 @@ module QR
 
   class Code 
 
-    attr_accessor :quiet_zone_gap
+    attr_accessor :quiet_zone_gap, :content
 
     def initialize(content, invert = false)
       @content = content
@@ -13,12 +13,13 @@ module QR
       @quiet_zone_gap = 3
 
       extend Remainder
-      extend Versions[0]
 
       extend Content
       extend Length
       extend Mode
       extend End
+
+      extend Versions[0]
 
       extend Padding
       extend ErrorCorrection
