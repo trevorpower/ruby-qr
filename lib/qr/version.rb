@@ -4,9 +4,13 @@ module QR
     
     attr_accessor :max, :data_words
 
+    VERSION_DETAILS = [
+      [20, 19],
+      [24, 34]  
+    ]
+
     def version number
-      @max = 20
-      @data_words = 19
+      @max, @data_words = VERSION_DETAILS[number - 1]
     end
 
   end

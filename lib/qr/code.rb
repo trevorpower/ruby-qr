@@ -30,10 +30,10 @@ module QR
       extend FormatErrorCorrection
       extend FormatMask
 
-      extend VerticalFormat
-      extend HorizontalFormat
       extend Timing
       extend Alignment
+      extend VerticalFormat
+      extend HorizontalFormat
       extend PositionSquares
       extend QuietZone
 
