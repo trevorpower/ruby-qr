@@ -29,10 +29,10 @@ class TestVerticalFormat < MiniTest::Unit::TestCase
   def test_that_first_six_bits_on_column_eight_correspond_to_first_six_bits_of_format
                #012345678901234
     @default = "101111000000000"
-    assert_equal true,  dark?(8, 35, 38)
-    assert_equal true,  dark?(8, 36, 38)
-    assert_equal true,  dark?(8, 37, 38)
-    assert_equal false, dark?(8, 38, 38)
-    assert_equal true,  dark?(8, 39, 38)
+    assert_equal true,  dark?(8, 35, 39)
+    assert_equal true,  dark?(8, 36, 39)
+    assert_equal true,  dark?(8, 37, 39)
+    assert_equal false, dark?(8, 38, 39)
+    assert_equal true,  dark?(8, 39, 39)
   end
 end
