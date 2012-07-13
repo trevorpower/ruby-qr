@@ -40,12 +40,11 @@ class TestHorizontalFormat < MiniTest::Unit::TestCase
   def test_that_last_six_bits_on_row_eight_correspond_to_first_six_bits_of_format
                #012345678901234
     @default = "000000000001001"
-    max = 39
-    assert_equal false, module?(34, 8, 21)
-    assert_equal false, module?(35, 8, 21)
-    assert_equal true, module?(36, 8, 21)
-    assert_equal false, module?(37, 8, 21)
-    assert_equal false, module?(38, 8, 21)
-    assert_equal true, module?(39, 8, 21)
+    assert_equal false, module?(34, 8, 39)
+    assert_equal false, module?(35, 8, 39)
+    assert_equal true, module?(36, 8, 39)
+    assert_equal false, module?(37, 8, 39)
+    assert_equal false, module?(38, 8, 39)
+    assert_equal true, module?(39, 8, 39)
   end
 end
