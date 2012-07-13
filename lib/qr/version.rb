@@ -11,7 +11,11 @@ module QR
 
     All = [
       Version.new(20, 19),
-      Version.new(23, 34)
+      Version.new(23, 34),
+      Version.new(27, 55),
+      Version.new(31, 80), 
+      Version.new(35, 108), 
+      Version.new(39, 136)
     ] 
 
     def self.all

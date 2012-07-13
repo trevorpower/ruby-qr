@@ -18,7 +18,10 @@ module QR
       extend Mode::Byte
       extend End
 
-      @version = Version.all.first
+      puts data
+      @version = Version.all
+        .select{|v| v.data_words > data.length / 8 }
+        .first
 
       extend Padding
       extend ErrorCorrection
